@@ -91,7 +91,7 @@ export function connect() {
         function _onConnectionFailed(err) {
             unsubscribe();
             console.error('CONNECTION FAILED:', err);
-            dispatch(connectionFailed(connection, err));
+            dispatch(connectionFailed(connection, err, ''));
         }
 
         /**
@@ -193,7 +193,7 @@ function _connectionDisconnected(connection, message: string) {
  * }}
  * @public
  */
-export function connectionEstablished(connection) {
+export function connectionEstablished(connection: Object) {
     return {
         type: CONNECTION_ESTABLISHED,
         connection
@@ -214,7 +214,8 @@ export function connectionEstablished(connection) {
  * }}
  * @public
  */
-export function connectionFailed(connection, error: string, errorMessage: string) {
+export function connectionFailed(
+    connection: Object, error: string, errorMessage: string) {
     return {
         type: CONNECTION_FAILED,
         connection,
